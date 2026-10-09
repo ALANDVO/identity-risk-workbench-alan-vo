@@ -132,3 +132,11 @@ def test_malformed_provider_output_has_local_fallback(data):
 def test_provider_error_does_not_expose_response():
     result=advise(analyze(snapshot()),Settings(llm_api_key='test-only-not-a-secret'),True,httpx.MockTransport(lambda _:httpx.Response(500,text='sensitive-provider-diagnostic')))
     assert 'sensitive-provider-diagnostic' not in json.dumps(result)
+
+
+@pytest.mark.parametrize('name', ['\ud800', ' padded ', 'line\nbreak'])
+def test_malformed_custom_policy_labels_return_validation_error(client, name):
+    response=client.post('/api/import/preview',files={'file':('e.json',json.dumps(export()).encode())},
+        data={'policy':json.dumps({'toxic_pairs':[{'name':name,'left':'payments:create','right':'payments:approve'}]})})
+    assert response.status_code==422
+    assert response.json()['error']=='invalid_input'
