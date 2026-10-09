@@ -20,7 +20,7 @@ from .domain.policy import parse_policy
 from .services.catalog import Catalog, Conflict, MissingRecord
 from .services.advice import advise
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 
 def create_app(settings: Settings | None = None, oidc_transport=None, llm_transport=None):

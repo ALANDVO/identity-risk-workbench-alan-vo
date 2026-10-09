@@ -2,7 +2,7 @@
   "name": "identity-risk-workbench-alan-vo",
   "owner": "ALANDVO",
   "email": "alanvo@gmail.com",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "domain": "cybersecurity",
   "description": "Trace inherited identity grants, review risk evidence and simulate controlled remediation.",
   "workflows": [

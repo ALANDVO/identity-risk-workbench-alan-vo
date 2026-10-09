@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.1]
+
+- Reject malformed Unicode, control characters and surrounding whitespace in custom policy names with HTTP 422 before analysis.
+- Add API regression cases for invalid labels.
+
 ## [1.0.0] - 2026-10-09
 
 ## 1.0.0

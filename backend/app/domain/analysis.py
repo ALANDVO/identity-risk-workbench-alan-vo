@@ -4,7 +4,7 @@ from dataclasses import asdict
 import hashlib
 import json
 from .graph import covers, grant_evidence, resolve_all
-from .imports import permission
+from .imports import permission, text
 from .models import Finding, Policy, Snapshot
 
 RULES = {
@@ -23,8 +23,7 @@ def validate_policy(policy: Policy):
     for value in policy.privileged_permissions:
         permission(value, "policy.privileged_permissions")
     for pair in policy.toxic_pairs:
-        if not isinstance(pair.name, str) or not pair.name.strip() or len(pair.name) > 160:
-            raise ValueError("Toxic pair requires a nonempty name up to 160 characters")
+        text(pair.name, "policy.toxic_pairs.name")
         permission(pair.left, "policy.toxic_pairs.left")
         permission(pair.right, "policy.toxic_pairs.right")
         if pair.left == pair.right:
