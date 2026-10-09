@@ -1,6 +1,6 @@
 # Identity Risk Workbench — Alan Vo
 
-Current version: `1.0.0`.
+Current version: `1.0.1`.
 
 An identity governance review workspace: import an identity export, trace effective access through
 nested groups and inherited roles, investigate risk findings, and preview remediation before
