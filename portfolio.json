@@ -1,0 +1,15 @@
+{
+  "name": "identity-risk-workbench-alan-vo",
+  "owner": "ALANDVO",
+  "email": "alanvo@gmail.com",
+  "version": "1.0.0",
+  "domain": "cybersecurity",
+  "description": "Trace inherited identity grants, review risk evidence and simulate controlled remediation.",
+  "workflows": [
+    "Import and validate identity evidence",
+    "Review findings and inherited grant paths",
+    "Preview and independently approve remediation plans",
+    "Evaluate policy thresholds and inspect audit history"
+  ],
+  "summary": "Trace inherited identity grants, review risk evidence and simulate controlled remediation."
+}
