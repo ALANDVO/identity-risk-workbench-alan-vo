@@ -1,0 +1,84 @@
+{
+  "observed_at": "2026-10-01T00:00:00Z",
+  "roles": [
+    {
+      "id": "pay",
+      "permissions": [
+        "payments:create"
+      ]
+    },
+    {
+      "id": "approve",
+      "permissions": [
+        "payments:approve"
+      ]
+    },
+    {
+      "id": "admin",
+      "permissions": [
+        "identity:*"
+      ],
+      "inherits": [
+        "pay"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "finance",
+      "roles": [
+        "approve"
+      ],
+      "includes": []
+    },
+    {
+      "id": "nested",
+      "roles": [],
+      "includes": [
+        "finance"
+      ]
+    }
+  ],
+  "identities": [
+    {
+      "id": "a",
+      "display_name": "Analyst",
+      "kind": "human",
+      "enabled": true,
+      "created_at": "2026-01-01T00:00:00Z",
+      "last_login": "2026-09-30T00:00:00Z",
+      "mfa": false,
+      "roles": [
+        "admin"
+      ],
+      "groups": [
+        "nested"
+      ]
+    },
+    {
+      "id": "b",
+      "display_name": "Worker",
+      "kind": "service",
+      "enabled": true,
+      "created_at": "2026-01-01T00:00:00Z",
+      "last_login": null,
+      "roles": [
+        "pay"
+      ],
+      "groups": []
+    },
+    {
+      "id": "c",
+      "display_name": "Reviewer",
+      "kind": "human",
+      "enabled": true,
+      "created_at": "2026-01-01T00:00:00Z",
+      "last_login": "2026-09-30T00:00:00Z",
+      "mfa": true,
+      "roles": [
+        "approve"
+      ],
+      "groups": []
+    }
+  ]
+}

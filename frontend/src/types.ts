@@ -1,0 +1,14 @@
+export type User = {subject:string; username:string; roles:string[]; csrf_token:string}
+export type Summary = {identities:number; enabled:number; privileged:number; findings:number; by_severity:Record<string,number>; by_rule:Record<string,number>; effective_permission_grants:number}
+export type Snapshot = {id:string; name:string; digest:string; observed_at:string; imported_at:string; imported_by:string; version:number; summary:Summary}
+export type Identity = {id:string; display_name:string; kind:string; enabled:boolean; owner:string|null; mfa:boolean|null; direct_roles:string[]; groups:string[]; effective_roles:string[]; permissions:string[]; paths:Record<string,string[]>; risk_score:number; finding_count:number; grant_share:number; privileged:boolean; last_login:string|null}
+export type Finding = {id:string; identity_id:string; rule:string; severity:string; points:number; title:string; evidence:Record<string,unknown>; recommendation:string}
+export type Review = {finding_id:string; decision:string; note:string; author:string; version:number}
+export type Policy = {stale_days:number; never_used_grace_days:number; concentration_threshold:number; minimum_population:number; privileged_permissions:string[]; toxic_pairs:{name:string;left:string;right:string}[]}
+export type Analysis = {summary:Summary; identities:Identity[]; findings:Finding[]; policy:Policy; limitations:string[]; snapshot_digest:string; observed_at:string}
+export type Action = {kind:'disable'|'remove_role'|'remove_group'|'assign_owner'; identity_id:string; value?:string}
+export type Preview = {actions:Action[]; resolved:Finding[]; introduced:Finding[]; remaining:Finding[]; affected:{identity_id:string;score_before:number;score_after:number;remaining_roles:string[];remaining_permissions:string[]}[]; notice:string; summary_before:Summary; summary_after:Summary}
+export type Plan = {id:string; title:string; actions:Action[]; preview:Preview; state:string; author:string; version:number; decision_note:string|null; reviewed_by:string|null}
+export type Detail = {snapshot:Snapshot; analysis:Analysis; reviews:Review[]; plans:Plan[]}
+export type Advice = {text:string;source:string;reason:string;external_sent:boolean}
+export type AuditEvent = {sequence:number;at:string;actor:string;action:string;resource_id:string;details:Record<string,unknown>}

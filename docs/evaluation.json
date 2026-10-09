@@ -1,0 +1,95 @@
+{
+  "method": "Synthetic stale-account policy calibration; not a trained threat detector",
+  "training_seed": 117,
+  "heldout_seed": 811,
+  "identities_per_split": 200,
+  "candidate_training_metrics": [
+    {
+      "threshold_days": 30,
+      "true_positive": 52,
+      "false_positive": 89,
+      "false_negative": 0,
+      "true_negative": 59,
+      "precision": 0.3688,
+      "recall": 1.0,
+      "f1": 0.5389
+    },
+    {
+      "threshold_days": 60,
+      "true_positive": 50,
+      "false_positive": 64,
+      "false_negative": 2,
+      "true_negative": 84,
+      "precision": 0.4386,
+      "recall": 0.9615,
+      "f1": 0.6024
+    },
+    {
+      "threshold_days": 90,
+      "true_positive": 39,
+      "false_positive": 32,
+      "false_negative": 13,
+      "true_negative": 116,
+      "precision": 0.5493,
+      "recall": 0.75,
+      "f1": 0.6341
+    },
+    {
+      "threshold_days": 120,
+      "true_positive": 33,
+      "false_positive": 9,
+      "false_negative": 19,
+      "true_negative": 139,
+      "precision": 0.7857,
+      "recall": 0.6346,
+      "f1": 0.7021
+    },
+    {
+      "threshold_days": 150,
+      "true_positive": 23,
+      "false_positive": 0,
+      "false_negative": 29,
+      "true_negative": 148,
+      "precision": 1.0,
+      "recall": 0.4423,
+      "f1": 0.6133
+    },
+    {
+      "threshold_days": 180,
+      "true_positive": 17,
+      "false_positive": 0,
+      "false_negative": 35,
+      "true_negative": 148,
+      "precision": 1.0,
+      "recall": 0.3269,
+      "f1": 0.4928
+    }
+  ],
+  "selected_threshold_days": 120,
+  "heldout_default": {
+    "threshold_days": 90,
+    "true_positive": 35,
+    "false_positive": 40,
+    "false_negative": 14,
+    "true_negative": 111,
+    "precision": 0.4667,
+    "recall": 0.7143,
+    "f1": 0.5645
+  },
+  "heldout_selected": {
+    "threshold_days": 120,
+    "true_positive": 34,
+    "false_positive": 12,
+    "false_negative": 15,
+    "true_negative": 139,
+    "precision": 0.7391,
+    "recall": 0.6939,
+    "f1": 0.7158
+  },
+  "limitations": [
+    "Labels represent synthetic lifecycle intent and are independent of the selected threshold.",
+    "The distributions overlap intentionally; inactivity alone cannot establish business need.",
+    "Held-out data is never used to select a threshold. No workspace policy is changed.",
+    "These results do not establish performance on real identity exports or evaluate LLM advice."
+  ]
+}
