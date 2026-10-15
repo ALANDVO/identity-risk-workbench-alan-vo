@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
+## [Unreleased]
+
+- Validate remediation plan action values (including `assign_owner`) against control characters, unpaired surrogates, and surrounding whitespace with HTTP 422 before simulating or saving plans.
+- Add finding-rule filtering to snapshot investigation so reviewers can isolate identities and findings triggered by a specific risk rule.
+
 ## [1.0.1]
 
 - Reject malformed Unicode, control characters and surrounding whitespace in custom policy names with HTTP 422 before analysis.

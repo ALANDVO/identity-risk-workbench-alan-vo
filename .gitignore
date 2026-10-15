@@ -9,3 +9,5 @@ dist/
 *.db-shm
 *.sqlite*
 .portfolio-*.json
+.antigravitycli/
+.omp/

@@ -11,5 +11,6 @@
     "Preview and independently approve remediation plans",
     "Evaluate policy thresholds and inspect audit history"
   ],
-  "summary": "Trace inherited identity grants, review risk evidence and simulate controlled remediation."
+  "summary": "Work in progress: identity-risk-workbench-alan-vo",
+  "status": "work-in-progress"
 }

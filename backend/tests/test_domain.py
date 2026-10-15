@@ -133,6 +133,9 @@ def test_assign_service_owner_resolves_orphan():
     [{"kind": {}, "identity_id": "a"}], [{"kind": "disable", "identity_id": "missing"}],
     [{"kind": "remove_role", "identity_id": "a", "value": "pay"}],
     [{"kind": "assign_owner", "identity_id": "a", "value": "Human"}],
+    [{"kind": "assign_owner", "identity_id": "b", "value": " padded "}],
+    [{"kind": "assign_owner", "identity_id": "b", "value": "line\nbreak"}],
+    [{"kind": "assign_owner", "identity_id": "b", "value": "owner\ud800"}],
     [{"kind": "disable", "identity_id": "a", "value": "extra"}],
     [{"kind": "disable", "identity_id": "a"}] * 2,
 ])
