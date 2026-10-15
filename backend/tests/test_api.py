@@ -140,3 +140,15 @@ def test_malformed_custom_policy_labels_return_validation_error(client, name):
         data={'policy':json.dumps({'toxic_pairs':[{'name':name,'left':'payments:create','right':'payments:approve'}]})})
     assert response.status_code==422
     assert response.json()['error']=='invalid_input'
+
+
+@pytest.mark.parametrize('owner', ['\ud800', ' padded ', 'line\nbreak'])
+def test_malformed_plan_action_values_return_validation_error(client, owner):
+    id_ = upload(client)
+    actions = [{'kind': 'assign_owner', 'identity_id': 'b', 'value': owner}]
+    headers = {'Content-Type': 'application/json'}
+    preview = client.post(f'/api/snapshots/{id_}/plans/preview', content=json.dumps({'actions': actions}), headers=headers)
+    assert preview.status_code == 422 and preview.json()['error'] == 'invalid_input'
+    saved = client.post(f'/api/snapshots/{id_}/plans', content=json.dumps({'title': 'Assign owner', 'actions': actions}), headers=headers)
+    assert saved.status_code == 422 and saved.json()['error'] == 'invalid_input'
+

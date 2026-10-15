@@ -1,5 +1,8 @@
 # Identity Risk Workbench — Alan Vo
 
+> Work in progress. This checkpoint may be incomplete or fail tests. See PLAN.md and STATUS.md before use.
+
+
 Current version: `1.0.1`.
 
 An identity governance review workspace: import an identity export, trace effective access through
@@ -11,8 +14,9 @@ aggregate-only LLM advice. No identity-provider credentials or live mutation per
 
 1. **Evidence intake:** validate a JSON snapshot, tune analysis policy, preview findings, then save.
    Imports reject duplicate IDs, unknown references, cycles, ambiguous booleans and invalid dates.
-2. **Investigation:** inspect effective roles and permission grant paths; review stale accounts,
-   missing or unknown MFA, ownerless services, toxic permissions and concentrated grants.
+2. **Investigation:** filter identities by name or triggered finding rule, inspect effective roles and
+   permission grant paths, and review stale accounts, missing or unknown MFA, ownerless services,
+   toxic permissions and concentrated grants.
 3. **Controlled remediation:** preview role or group removal, disabling an identity or assigning an
    owner. Another authenticated reviewer must approve a proposed plan. Plans never execute changes.
 4. **Accountability:** annotate findings with version-protected decisions, export JSON or safe CSV,

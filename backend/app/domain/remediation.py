@@ -1,6 +1,7 @@
 """Side-effect-free remediation simulation over an immutable evidence snapshot."""
 from dataclasses import replace
 from .analysis import analyze
+from .imports import ImportFailure, text
 from .models import Policy, Snapshot
 
 
@@ -28,8 +29,11 @@ def preview(snapshot: Snapshot, actions: list[dict], policy: Policy | None = Non
             raise PlanFailure(f"Action {index}: unknown identity")
         identity = identities[identity_id]
         value = action.get("value")
-        if kind != "disable" and (not isinstance(value, str) or not value.strip() or len(value) > 160):
-            raise PlanFailure(f"Action {index}: nonempty value up to 160 characters required")
+        if kind != "disable":
+            try:
+                value = text(value, f"Action {index}.value")
+            except ImportFailure as exc:
+                raise PlanFailure(str(exc)) from None
         key = (identity_id, kind, value)
         if key in seen:
             raise PlanFailure(f"Action {index}: duplicate action")
