@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "current_feature": "remediation-owner-validation-and-quick-stage",
+  "features": [
+    {
+      "id": "evidence-intake-and-policy",
+      "title": "Strict identity export intake and configurable analysis policy",
+      "status": "done",
+      "acceptance": [
+        "Reject malformed JSON, duplicate keys/IDs, unknown references, cycles, invalid timestamps, and control characters before storage",
+        "Preview export findings under custom policy thresholds and toxic permission pairs without storing data",
+        "Deduplicate identical export bytes and preserve recorded policy"
+      ],
+      "implementation": [
+        "backend/app/domain/imports.py",
+        "backend/app/domain/policy.py",
+        "backend/app/services/catalog.py",
+        "frontend/src/ImportPanel.tsx",
+        "frontend/src/PolicyEditor.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_domain.py",
+        "backend/tests/test_catalog.py",
+        "backend/tests/test_api.py",
+        "frontend/src/workflows.test.tsx"
+      ]
+    },
+    {
+      "id": "grant-resolution-and-risk-triage",
+      "title": "Inherited grant path resolution, risk triage, and finding reviews",
+      "status": "done",
+      "acceptance": [
+        "Resolve effective roles and permissions with deterministic shortest grant paths across nested groups and role inheritance",
+        "Compute evidence-backed findings for stale accounts, missing/unknown MFA, orphan services, toxic pairs, disabled grants, and concentration",
+        "Record optimistic-versioned finding review decisions and export safe CSV or JSON"
+      ],
+      "implementation": [
+        "backend/app/domain/graph.py",
+        "backend/app/domain/analysis.py",
+        "backend/app/services/catalog.py",
+        "frontend/src/SnapshotView.tsx",
+        "frontend/src/FindingReview.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_domain.py",
+        "backend/tests/test_catalog.py",
+        "backend/tests/test_api.py",
+        "frontend/src/workflows.test.tsx"
+      ]
+    },
+    {
+      "id": "remediation-simulation-and-approval",
+      "title": "Immutable remediation simulation and two-person plan approval",
+      "status": "done",
+      "acceptance": [
+        "Preview non-executing remediation plans over an immutable snapshot copy and report resolved, introduced, and remaining findings",
+        "Enforce independent reviewer approval distinct from the plan author with optimistic version checks"
+      ],
+      "implementation": [
+        "backend/app/domain/remediation.py",
+        "backend/app/services/catalog.py",
+        "frontend/src/PlanPanel.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_domain.py",
+        "backend/tests/test_catalog.py",
+        "backend/tests/test_api.py",
+        "frontend/src/workflows.test.tsx"
+      ]
+    },
+    {
+      "id": "oidc-sessions-audit-and-evaluation",
+      "title": "OIDC PKCE authentication, bounded audit log, policy evaluation, and aggregate LLM advice",
+      "status": "done",
+      "acceptance": [
+        "Authenticate via OIDC authorization code + PKCE or loopback-only local demo mode with CSRF and role enforcement",
+        "Provide reproducible synthetic stale-account threshold calibration and optional aggregate-only LLM advice with local fallback"
+      ],
+      "implementation": [
+        "backend/app/core/auth.py",
+        "backend/app/services/advice.py",
+        "backend/app/services/evaluation.py",
+        "frontend/src/EvaluationPanel.tsx",
+        "frontend/src/AuditPanel.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_oidc.py",
+        "backend/tests/test_evaluation.py",
+        "backend/tests/test_api.py"
+      ]
+    },
+    {
+      "id": "remediation-owner-validation-and-quick-stage",
+      "title": "Strict remediation action string validation and identity-scoped finding filter",
+      "status": "done",
+      "acceptance": [
+        "Reject control characters, unpaired surrogates, and surrounding whitespace in remediation action values (such as assign_owner) consistently with import and policy validation",
+        "Allow reviewers to filter identities by finding rule in SnapshotView so accounts triggering a specific risk rule can be isolated quickly"
+      ],
+      "implementation": [
+        "backend/app/domain/remediation.py",
+        "frontend/src/SnapshotView.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_domain.py",
+        "backend/tests/test_api.py",
+        "frontend/src/workflows.test.tsx"
+      ]
+    },
+    {
+      "id": "enhanced-audit-and-trends",
+      "title": "Enhanced audit log querying, export, and multi-snapshot trend analysis",
+      "status": "planned",
+      "acceptance": [
+        "Extend bounded audit log with structured queries by action type, actor, time range, and resource",
+        "Export audit events as JSON/CSV with formula-neutralized cells",
+        "Compare two snapshots to show identity, finding, and risk score changes over time",
+        "Visualize finding trend lines for top rules across snapshots"
+      ],
+      "implementation": [
+        "backend/app/services/audit.py",
+        "backend/app/domain/comparison.py",
+        "frontend/src/AuditPanel.tsx",
+        "frontend/src/TrendView.tsx"
+      ],
+      "tests": [
+        "backend/tests/test_audit.py",
+        "backend/tests/test_comparison.py",
+        "backend/tests/test_api.py",
+        "frontend/src/workflows.test.tsx"
+      ]
+    }
+  ]
+}
