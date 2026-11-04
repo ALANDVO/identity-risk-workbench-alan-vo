@@ -1,6 +1,15 @@
 # Changelog
 
-## 1.2.0 — work-in-progress checkpoint
+## 1.3.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
+## 1.2.0 — 2026-11-04
+
+- Validate remediation plan action values (including `assign_owner`) against control characters, unpaired surrogates, and surrounding whitespace with HTTP 422 before simulating or saving plans.
+- Add finding-rule filtering to snapshot investigation so reviewers can isolate identities and findings triggered by a specific risk rule.
+
+## 1.1.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
 

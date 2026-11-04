@@ -12,3 +12,14 @@ dist/
 .antigravitycli/
 .omp/
 venv/
+.turbo/
+.env.local
+.env.*.local
+**/data/media/
+*.pyc
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
