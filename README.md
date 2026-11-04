@@ -3,7 +3,7 @@
 > Work in progress. This checkpoint may be incomplete or fail tests. See PLAN.md and STATUS.md before use.
 
 
-Current version: `1.0.1`.
+Current version: `1.2.0`.
 
 An identity governance review workspace: import an identity export, trace effective access through
 nested groups and inherited roles, investigate risk findings, and preview remediation before
