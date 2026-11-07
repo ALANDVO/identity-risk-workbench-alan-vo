@@ -70,3 +70,15 @@ Implementation: `backend/app/domain/remediation.py`, `frontend/src/SnapshotView.
 
 Tests: `backend/tests/test_domain.py`, `backend/tests/test_api.py`, `frontend/src/workflows.test.tsx`
 
+### remediation-action-value-validation — Consistent remediation action value validation for all action types
+
+Status: done
+
+Acceptance:
+- Reject control characters, unpaired surrogates, and surrounding whitespace in remove_role and remove_group action values, consistent with assign_owner and import/policy validation
+- Defense-in-depth validation applied at API layer even though frontend uses dropdowns for these actions
+
+Implementation: `backend/app/domain/remediation.py`
+
+Tests: `backend/tests/test_domain.py`
+
