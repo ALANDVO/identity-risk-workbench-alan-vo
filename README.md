@@ -223,4 +223,4 @@ Alan Vo · [alanvo@gmail.com](mailto:alanvo@gmail.com) · [GitHub](https://githu
 
 ---
 
-Alan Vo · [alanvo.net](https://alanvo.net)
+Alan Vo · [alanvo.net](https://alanvo.net) · [X: @alanvoasi](https://x.com/alanvoasi)
