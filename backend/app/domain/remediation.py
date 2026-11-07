@@ -29,6 +29,7 @@ def preview(snapshot: Snapshot, actions: list[dict], policy: Policy | None = Non
             raise PlanFailure(f"Action {index}: unknown identity")
         identity = identities[identity_id]
         value = action.get("value")
+        # Validate value for all action types that use it (defense in depth)
         if kind != "disable":
             try:
                 value = text(value, f"Action {index}.value")

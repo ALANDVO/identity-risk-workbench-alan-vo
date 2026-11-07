@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: identity-risk-workbench-alan-vo
+Version: 1.0.1
+Summary: Identity evidence analysis, review workflows and remediation simulation
+Author-email: Alan Vo <alanvo@gmail.com>
+License: MIT
+Requires-Python: >=3.12
+License-File: LICENSE
+Dynamic: license-file
