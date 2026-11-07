@@ -37,3 +37,7 @@ Partial code published for continued development. Known issues: STATUS.md.
 - Versioned finding reviews and independent plan approval.
 - OIDC with PKCE, signed identity tokens, server-side sessions, CSRF and role checks.
 - React review workspace, safe exports, bounded audit and optional aggregate-only LLM advice.
+
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)

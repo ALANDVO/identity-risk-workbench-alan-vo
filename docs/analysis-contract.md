@@ -66,3 +66,7 @@ and export evidence according to organizational retention requirements.
 CSV exports neutralize spreadsheet formula prefixes; JSON preserves the original strings.
 The database contains identity information and must be protected by filesystem permissions,
 backup access controls and authenticated deployment. Synthetic examples contain no real users.
+
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)

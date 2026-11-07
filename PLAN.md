@@ -82,3 +82,6 @@ Implementation: `backend/app/domain/remediation.py`
 
 Tests: `backend/tests/test_domain.py`
 
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)

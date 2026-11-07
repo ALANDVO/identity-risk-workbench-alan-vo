@@ -220,3 +220,7 @@ No deny policies, resource conditions or provider-specific semantics are modeled
 
 ---
 Alan Vo · [alanvo@gmail.com](mailto:alanvo@gmail.com) · [GitHub](https://github.com/ALANDVO)
+
+---
+
+Alan Vo · [alanvo.net](https://alanvo.net)
