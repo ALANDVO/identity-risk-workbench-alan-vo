@@ -80,7 +80,7 @@ Acceptance:
 
 Implementation: `backend/app/domain/remediation.py`
 
-Tests: `backend/tests/test_domain.py`
+Tests: `backend/tests/test_domain.py`, `backend/tests/test_api.py`
 
 ---
 

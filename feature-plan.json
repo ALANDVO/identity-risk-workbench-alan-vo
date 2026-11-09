@@ -120,7 +120,8 @@
         "backend/app/domain/remediation.py"
       ],
       "tests": [
-        "backend/tests/test_domain.py"
+        "backend/tests/test_domain.py",
+        "backend/tests/test_api.py"
       ]
     }
   ]
