@@ -197,3 +197,14 @@ def test_effective_grant_budget(monkeypatch):
     {"concentration_threshold": float("nan")}, {"minimum_population": -1}])
 def test_policy_bounds(kwargs):
     with pytest.raises(ValueError): Policy(**kwargs)
+
+
+def test_remove_group_carriage_return_rejected():
+    """Test that remove_group action with carriage return in value is rejected."""
+    from app.domain.remediation import PlanFailure, preview
+    import json
+    from app.domain.imports import load_snapshot
+    
+    s = load_snapshot(json.dumps(export()).encode())
+    with pytest.raises(PlanFailure):
+        preview(s, [{"kind": "remove_group", "identity_id": "a", "value": "\r"}])
