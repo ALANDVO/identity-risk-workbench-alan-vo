@@ -4,7 +4,7 @@ Each round completes one feature or repair. Future items are planned, not implem
 
 ## Current round
 
-remediation-owner-validation-and-quick-stage
+remediation-action-field-normalization
 
 ## Roadmap
 
@@ -81,6 +81,18 @@ Acceptance:
 Implementation: `backend/app/domain/remediation.py`
 
 Tests: `backend/tests/test_domain.py`, `backend/tests/test_api.py`
+
+### remediation-action-field-normalization — Deterministic remediation action field handling
+
+Status: done
+
+Acceptance:
+- Reject non-string remediation action identity_id values (arrays, numbers, booleans, null) with a validation failure instead of raising an internal error
+- Store and echo remediation plan actions with a stable field order so previews and saved plans do not change meaning between equivalent payloads
+
+Implementation: `backend/app/domain/remediation.py`
+
+Tests: `backend/tests/test_domain.py`
 
 ---
 
