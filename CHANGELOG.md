@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.7.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
+## Unreleased
+
+- Reject non-string remediation action `identity_id` values with a 422 validation error instead of an internal server error, and emit remediation actions in a stable field order.
+
+
 ## 1.6.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.

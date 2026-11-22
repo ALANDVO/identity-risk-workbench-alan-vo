@@ -142,6 +142,8 @@ def test_assign_service_owner_resolves_orphan():
     [{"kind": "remove_group", "identity_id": "a", "value": " padded "}],
     [{"kind": "remove_group", "identity_id": "a", "value": "line\nbreak"}],
     [{"kind": "remove_group", "identity_id": "a", "value": "group\ud800"}],
+    [{"kind": "remove_group", "identity_id": ["a"], "value": "nested"}],
+    [{"kind": "remove_group", "identity_id": 7, "value": "nested"}],
     [{"kind": "disable", "identity_id": "a", "value": "extra"}],
     [{"kind": "disable", "identity_id": "a"}] * 2,
 ])
@@ -197,6 +199,11 @@ def test_effective_grant_budget(monkeypatch):
     {"concentration_threshold": float("nan")}, {"minimum_population": -1}])
 def test_policy_bounds(kwargs):
     with pytest.raises(ValueError): Policy(**kwargs)
+
+
+def test_preview_preserves_action_field_order_and_values():
+    result = preview(snapshot(), [{"value": "nested", "identity_id": "a", "kind": "remove_group"}])
+    assert result["actions"] == [{"value": "nested", "identity_id": "a", "kind": "remove_group"}]
 
 
 def test_remove_group_carriage_return_rejected():

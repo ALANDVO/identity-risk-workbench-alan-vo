@@ -25,7 +25,9 @@ def preview(snapshot: Snapshot, actions: list[dict], policy: Policy | None = Non
         if set(action) != allowed:
             raise PlanFailure(f"Action {index}: fields must be {sorted(allowed)}")
         identity_id = action.get("identity_id")
-        if not isinstance(identity_id, str) or identity_id not in identities:
+        if type(identity_id) is not str:
+            raise PlanFailure(f"Action {index}: identity_id must be a single identifier string")
+        if identity_id not in identities:
             raise PlanFailure(f"Action {index}: unknown identity")
         identity = identities[identity_id]
         value = action.get("value")
@@ -60,7 +62,7 @@ def preview(snapshot: Snapshot, actions: list[dict], policy: Policy | None = Non
         else:
             raise PlanFailure(f"Action {index}: unsupported action")
         identities[identity_id] = identity
-        normalized.append(dict(action))
+        normalized.append({k: action[k] for k in ("kind", "identity_id", "value") if k in action})
     before = analyze(snapshot, policy)
     after = analyze(replace(snapshot, identities=tuple(identities.values())), policy)
     old = {f["id"]: f for f in before["findings"]}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "current_feature": "remediation-owner-validation-and-quick-stage",
+  "current_feature": "remediation-action-field-normalization",
   "features": [
     {
       "id": "evidence-intake-and-policy",
@@ -106,8 +106,7 @@
         "backend/tests/test_api.py",
         "frontend/src/workflows.test.tsx"
       ]
-    }
-    ,
+    },
     {
       "id": "remediation-action-value-validation",
       "title": "Consistent remediation action value validation for all action types",
@@ -122,6 +121,21 @@
       "tests": [
         "backend/tests/test_domain.py",
         "backend/tests/test_api.py"
+      ]
+    },
+    {
+      "id": "remediation-action-field-normalization",
+      "title": "Deterministic remediation action field handling",
+      "status": "done",
+      "acceptance": [
+        "Reject non-string remediation action identity_id values (arrays, numbers, booleans, null) with a validation failure instead of raising an internal error",
+        "Store and echo remediation plan actions with a stable field order so previews and saved plans do not change meaning between equivalent payloads"
+      ],
+      "implementation": [
+        "backend/app/domain/remediation.py"
+      ],
+      "tests": [
+        "backend/tests/test_domain.py"
       ]
     }
   ]
