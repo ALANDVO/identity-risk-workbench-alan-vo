@@ -215,3 +215,34 @@ def test_remove_group_carriage_return_rejected():
     s = load_snapshot(json.dumps(export()).encode())
     with pytest.raises(PlanFailure):
         preview(s, [{"kind": "remove_group", "identity_id": "a", "value": "\r"}])
+
+def test_invalid_plan_none_identity_id_in_disable():
+    """Test that disable action without identity_id key raises PlanFailure."""
+    from app.domain.remediation import PlanFailure, preview
+    from app.domain.models import Identity, Role, Group, Snapshot
+    from datetime import datetime, timezone
+    import json
+
+    # Create a minimal snapshot
+    role = Role(id="role:admin", permissions=("*",), inherits=())
+    group = Group(id="group:admin", roles=(), includes=())
+    identity = Identity(
+        id="a", display_name="test", kind="service", enabled=True,
+        created_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        last_login=None, mfa=None, owner=None,
+        roles=(), groups=()
+    )
+    snapshot = Snapshot(
+        observed_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        identities=(identity,),
+        roles=(role,),
+        groups=(group,),
+        digest="test"
+    )
+
+    # Disable action without identity_id key should raise PlanFailure
+    # because action.get("identity_id") returns None, and type(None) is not str
+    import pytest
+    with pytest.raises(PlanFailure) as excinfo:
+        preview(snapshot, [{"kind": "disable"}])
+    assert "fields must be" in str(excinfo.value)
